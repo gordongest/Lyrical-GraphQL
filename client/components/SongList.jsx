@@ -3,9 +3,12 @@ import { Link } from 'react-router';
 import { graphql } from 'react-apollo';
 import Song from './Song';
 import fetchSongs from "../queries/fetchSongs";
+import deleteSong from "../queries/deleteSong";
 
 const SongList = ({ data }) => {
-    const renderSongs = () => data.songs.map(song => <Song key={song.id} {...song}/>)
+    const renderSongs = () => data.songs.map(song =>
+            <Song key={song.id} {...song}/>
+    )
 
     return (
         <div>
