@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Song from './Song';
@@ -25,6 +26,7 @@ const SongList = ({ data }) => {
                     <ul className="collection">
                         {renderSongs()}
                     </ul>
+                    {/*<Link to="/songs/create"></Link>*/}
                 </div>
             }
         </div>
