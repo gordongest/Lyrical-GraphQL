@@ -9,7 +9,7 @@ const client = new ApolloClient({})
 const App = () => {
   return (
     <ApolloProvider client={client}>
-      <SongList songs={[{name: "a sample song"}]} />
+      <SongList /*songs={[{name: "a sample song"}]}*/ />
     </ApolloProvider>
   )
 };

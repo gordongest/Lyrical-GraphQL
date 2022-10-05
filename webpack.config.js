@@ -10,13 +10,27 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(js|jsx)$/,
         use: 'babel-loader',
-        test: /\.js(x?)$/,
         exclude: /node_modules/
       },
       {
-        use: ['style-loader', 'css-loader'],
-        test: /\.css$/
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.graphql?$/,
+        use: [
+          {
+            loader: 'webpack-graphql-loader',
+            options: {
+              // validate: true,
+              // schema: "./path/to/schema.json",
+              // removeUnusedFragments: true
+              // etc. See "Loader Options" below
+            }
+          }
+        ]
       }
     ]
   },
