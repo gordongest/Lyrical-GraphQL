@@ -35,7 +35,7 @@ class SongCreator extends Component {
         return (
             <div className="container">
                 <Link to="/">Back</Link>
-                <h3>create a new song</h3>
+                <h3>Create a New Song</h3>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="song-title">Song Title</label>
                     <input type="text" value={this.state.title} onChange={this.handleChange}/>
@@ -45,29 +45,31 @@ class SongCreator extends Component {
     }
 }
 
-// const SongCreatorFunc = ({ mutate }) => {
-//     const [title, setTitle] = useState('');
-//
-//     const handleChange = e => setTitle(e.target.value);
-//     const handleSubmit = e => {
-//         e.preventDefault();
-//
-//         mutate({
-//             variables: {
-//                 title: title
-//             }
-//         });
-//     }
-//
-//     return (
-//         <div>
-//             <h3>create a new song</h3>
-//             <form onSubmit={handleSubmit}>
-//                 <label htmlFor="song-title">Song Title</label>
-//                 <input type="text" value={title} onChange={handleChange}/>
-//             </form>
-//         </div>
-//     )
-// }
+const SongCreatorFunctional = ({ mutate }) => {
+    const [title, setTitle] = useState('');
+
+    const handleChange = e => setTitle(e.target.value);
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        mutate({
+            variables: { title },
+            refetchQueries: [{ query: fetchSongs }]
+        })
+            .then(() => hashHistory.push('/'))
+            .catch(err => console.warn("ERR:", err.message));
+    }
+
+    return (
+        <div className="container">
+            <Link to="/">Back</Link>
+            <h3>Create a New Song</h3>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="song-title">Song Title</label>
+                <input type="text" value={title} onChange={handleChange}/>
+            </form>
+        </div>
+    )
+}
 
 export default graphql(addSong)(SongCreator)

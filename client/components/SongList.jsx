@@ -1,14 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import Song from './Song';
 import fetchSongs from "../queries/fetchSongs";
 import deleteSong from "../queries/deleteSong";
 
-const SongList = ({ data }) => {
+const SongList = ({ data, mutate }) => {
     const renderSongs = () => data.songs.map(song =>
             <Song key={song.id} {...song}/>
     )
+
+    const handleDelete = id => {
+        mutate({
+            variables: { id },
+
+        });
+    }
 
     return (
         <div>
@@ -31,4 +38,4 @@ const SongList = ({ data }) => {
     )
 }
 
-export default graphql(fetchSongs)(SongList);
+export default compose(graphql(fetchSongs), graphql(deleteSong))(SongList);
