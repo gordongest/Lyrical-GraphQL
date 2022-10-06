@@ -3,8 +3,9 @@ import { graphql } from 'react-apollo'
 import fetchSongs from '../queries/fetchSongs';
 import deleteSong from '../queries/deleteSong';
 import "../style/style.css"
+import { Link } from "react-router";
 
-const Song = ({ title, id, mutate, refetch }) => {
+const Song = ({ title, id, mutate }) => {
     const handleDelete = () => {
         mutate({
             variables: { id },
@@ -14,14 +15,16 @@ const Song = ({ title, id, mutate, refetch }) => {
     }
 
     return (
-        <li className="collection-item">
-            {title}
-            <i
-                className="material-icons"
-                onClick={handleDelete}>
-                delete
-            </i>
-        </li>
+        <Link to={`/songs/${id}`}>
+            <li className="collection-item">
+                {title}
+                <i
+                    className="material-icons"
+                    onClick={handleDelete}>
+                    delete
+                </i>
+            </li>
+        </Link>
     )
 }
 
