@@ -5,16 +5,17 @@ import Song from './Song';
 import fetchSongs from "../queries/fetchSongs";
 import deleteSong from "../queries/deleteSong";
 
-const SongList = ({ data, mutate }) => {
+const SongList = ({ data, mutate, refetch }) => {
     const renderSongs = () => data.songs.map(song =>
             <Song key={song.id} {...song}/>
     )
 
     const handleDelete = id => {
         mutate({
-            variables: { id },
-
-        });
+            variables: { id }
+        })
+            .then(() => refetch())
+            .catch(err => console.warn("ERR:", err.message));
     }
 
     return (

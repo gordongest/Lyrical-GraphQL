@@ -2,8 +2,9 @@ import React from 'react';
 import { graphql } from 'react-apollo'
 import fetchSongs from '../queries/fetchSongs';
 import deleteSong from '../queries/deleteSong';
+import "../style/style.css"
 
-const Song = ({ title, id, mutate }) => {
+const Song = ({ title, id, mutate, refetch }) => {
     const handleDelete = () => {
         mutate({
             variables: { id },
@@ -17,7 +18,6 @@ const Song = ({ title, id, mutate }) => {
             {title}
             <i
                 className="material-icons"
-                style={{ cursor: "pointer" }}
                 onClick={handleDelete}>
                 delete
             </i>
