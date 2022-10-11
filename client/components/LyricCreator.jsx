@@ -44,33 +44,33 @@ class LyricCreator extends Component {
     }
 }
 
-const LyricCreatorFunctional = ({ songId, mutate }) => {
-    const [content, setContent] = useState('');
-
-    const handleChange = e => setContent(e.target.value);
-
-    const handleSubmit = e => {
-        e.preventDefault();
-
-        mutate({
-            variables: {
-                songId,
-                content
-            }
-        })
-            .then(() => setContent(''))
-            .catch(err => console.warn("ERR:", err.message));
-    }
-
-    return (
-        <div>
-            <h5>Add Lyrics</h5>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="lyric-content">Enter Lyrics</label>
-                <input type="text" value={content} onChange={handleChange}/>
-            </form>
-        </div>
-    )
-}
+// const LyricCreatorFunctional = ({ songId, mutate }) => {
+//     const [content, setContent] = useState('');
+//
+//     const handleChange = e => setContent(e.target.value);
+//
+//     const handleSubmit = e => {
+//         e.preventDefault();
+//
+//         mutate({
+//             variables: {
+//                 songId,
+//                 content
+//             }
+//         })
+//             .then(() => setContent(''))
+//             .catch(err => console.warn("ERR:", err.message));
+//     }
+//
+//     return (
+//         <div>
+//             <h5>Add Lyrics</h5>
+//             <form onSubmit={handleSubmit}>
+//                 <label htmlFor="lyric-content">Enter Lyrics</label>
+//                 <input type="text" value={content} onChange={handleChange}/>
+//             </form>
+//         </div>
+//     )
+// }
 
 export default graphql(addLyricToSong)(LyricCreator);
