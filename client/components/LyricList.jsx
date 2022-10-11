@@ -1,25 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Lyric from './Lyric';
 
-class LyricList extends Component {
-    constructor(props) {
-        super(props)
-
-        this.renderLyrics = this.renderLyrics.bind(this);
-    }
-
-    renderLyrics() {
-        const { lyrics } = this.props;
-        return lyrics.map(lyric => <Lyric key={lyric.id} {...lyric} />)
-    }
-
-    render() {
-        return (
-            <ul className="collection">
-                {this.renderLyrics()}
-            </ul>
-        )
-    }
-}
+const LyricList = ({ lyrics }) => (
+    <ul className="collection">
+        {lyrics.map(lyric => <Lyric key={lyric.id} {...lyric} />)}
+    </ul>
+)
 
 export default LyricList;

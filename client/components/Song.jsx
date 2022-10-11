@@ -1,11 +1,11 @@
 import React from 'react';
 import { graphql } from 'react-apollo'
+import { Link } from "react-router";
 import fetchSongs from '../queries/fetchSongs';
 import deleteSong from '../queries/deleteSong';
 import "../style/style.css"
-import { Link } from "react-router";
 
-const Song = ({ title, id, mutate }) => {
+const Song = ({ id, title, mutate }) => {
     const handleDelete = () => {
         mutate({
             variables: { id },
