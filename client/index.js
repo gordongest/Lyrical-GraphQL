@@ -8,7 +8,10 @@ import SongList from './components/SongList';
 import SongCreator from './components/SongCreator';
 import SongDetail from './components/SongDetail';
 
-const client = new ApolloClient({})
+// watch object ids, refetch on change
+const client = new ApolloClient({
+    dataIdFromObject: object => object.id || null
+})
 
 const Root = () => {
   return (

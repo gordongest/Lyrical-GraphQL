@@ -1,9 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql`
-    query FetchSingleSong($id: ID!) {
-        song(id: $id) {
-            title
+    mutation AddLyricToSong($songId: ID, $content: String) {
+        addLyricToSong(content: $content, songId: $songId) {
             id
             lyrics {
                 id
@@ -11,5 +10,5 @@ export default gql`
                 likes
             }
         }
-    }
-`;
+    }    
+`

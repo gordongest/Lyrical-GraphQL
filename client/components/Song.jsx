@@ -15,16 +15,16 @@ const Song = ({ title, id, mutate }) => {
     }
 
     return (
-        <Link to={`/songs/${id}`}>
             <li className="collection-item">
-                {title}
+                <Link to={`/songs/${id}`}>
+                    {title}
+                </Link>
                 <i
                     className="material-icons"
                     onClick={handleDelete}>
                     delete
                 </i>
             </li>
-        </Link>
     )
 }
 

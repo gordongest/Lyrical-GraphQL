@@ -25,8 +25,10 @@ class SongCreator extends Component {
 
         this.props.mutate({
             variables: { title: this.state.title },
+            // refetch with specific query after submit
             refetchQueries: [{ query: fetchSongs }]
         })
+            // go back to index page
             .then(() => hashHistory.push('/'))
             .catch(err => console.warn("ERR:", err.message));
     }
@@ -49,6 +51,7 @@ const SongCreatorFunctional = ({ mutate }) => {
     const [title, setTitle] = useState('');
 
     const handleChange = e => setTitle(e.target.value);
+
     const handleSubmit = e => {
         e.preventDefault();
 
