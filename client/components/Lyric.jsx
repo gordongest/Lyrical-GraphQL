@@ -1,17 +1,23 @@
 import React from 'react';
-import { graphql } from "react-apollo";
-import likeLyric from "../queries/likeLyric";
+import { graphql } from 'react-apollo';
+import likeLyric from '../queries/likeLyric';
+import '../style/style.css';
 
-const Lyric = ({ id, content, mutate }) => {
-    const handleClick = e => {
+const Lyric = ({ id, content, likes, mutate }) => {
+    const handleClick = (e, prevLikes) => {
         e.preventDefault();
 
         mutate({
-            variables: {
-                id
+            variables: { id },
+            optimisticResponse: {
+                __typename: 'Mutation',
+                likeLyric: {
+                    id,
+                    likes: prevLikes + 1,
+                    __typename: 'LyricType'
+                }
             }
         })
-            .then()
             .catch(err => console.warn("ERR:", err.message))
 
     }
@@ -19,7 +25,10 @@ const Lyric = ({ id, content, mutate }) => {
     return (
         <li className="collection-item">
             {content}
-            <i className="material-icons" onClick={handleClick}>thumb_up</i>
+            <div className="like-box">
+                <i className="material-icons" onClick={(e, prevLikes) => handleClick(e, likes)}>thumb_up</i>
+                {likes}
+            </div>
         </li>
     )
 }
